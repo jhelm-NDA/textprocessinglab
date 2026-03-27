@@ -20,12 +20,25 @@ impl<P: Processor> Pipeline<P> {
         //   - iterate over inputs
         //   - call processor.process()
         //   - collect results into Vec<String>
-        vec![]
+        inputs
+            .iter()
+            .map(|s| self.processor.process(s))
+            .collect()
     }
 }
 
 pub fn word_frequency(inputs: &[String]) -> HashMap<String, usize> {
     // TODO 5:
     // Build a HashMap<String, usize> of word counts
-    HashMap::new()
+
+    let mut map = HashMap::new();
+
+    for line in inputs {
+        for word in line.split_whitespace() {
+            let w = word.to_lowercase();
+            *map.entry(w).or_insert(0) += 1;
+        }
+    }
+
+    map
 }

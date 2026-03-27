@@ -12,7 +12,7 @@ pub struct SharedConfig {
 
 pub fn build_shared_config() -> Rc<RefCell<SharedConfig>> {
     // TODO 9: Create Rc<RefCell<SharedConfig>>
-    Rc::new(RefCell::new(SharedConfig { prefix: "".into() }))
+    Rc::new(RefCell::new(SharedConfig { prefix: ">> ".into(), }))
 }
 
 pub fn build_threadsafe_counter() -> Arc<Mutex<i32>> {
